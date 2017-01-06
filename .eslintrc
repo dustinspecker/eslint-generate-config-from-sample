@@ -1,0 +1,7 @@
+{
+  extends: ['dustinspecker/esnext'],
+  rules: {
+    'prefer-reflect': 'off',
+    'prefer-spread': 'off'
+  }
+}
