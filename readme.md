@@ -31,6 +31,15 @@ eslint-generate-config-from-sample <FILE>
 
 `eslint-generate-config-from-sample` will then begin using computer magic (brute forcing the discoverable combintations of rule configurations) to create an ESLint file (`.eslintrc`).
 
+## How it works
+
+1. It looks at every built-in ESLint rules' schema to determine possible configuration possibilities
+2. It then tries every single combination on the provided file
+3. If at least one of the combinations passes, then it will write one of them to the new `.eslintrc`
+4. If zero combinations work, then it will write 'off' for that rule in the new `.eslintrc`
+
+There are already most likely impossible rule configurations such as the [indent](http://eslint.org/docs/rules/indent) because the option is any number. For now, we're ignoring those configurations, but wil try the other configurations. For example, looking at the [indent definition](https://github.com/eslint/eslint/blob/master/lib/rules/indent.js) we can determine that `"tab"` is configuration to try.
+
 ## TODO
  - actually have tests on `src/index.js`
  - refactor the eye bleedingly bad code in `src/rules.js`
